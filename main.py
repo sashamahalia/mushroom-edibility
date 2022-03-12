@@ -30,3 +30,9 @@ class Predict(Resource):
         out = {'Prediction': MUSHROOM_MODEL.predict([X_new])[0]}
 
         return out, 200
+
+
+API.add_resource(Predict, '/predict')
+
+if __name__ == '__main__':
+    APP.run(debug=True, port='5000')
