@@ -13,9 +13,9 @@ def encode(data):
     stalk_shape = le.fit_transform(list(data["stalk-shape"]))
     gill_color = le.fit_transform(list(data["gill-color"]))
 
-    encoded_list = (cap_shape, cap_color, odor, bruises, population, stalk_shape, gill_color)
+    encoded_list = [cap_shape, cap_color, odor, bruises, population, stalk_shape, gill_color]
 
     if "edibility" in data:
         edibility = le.fit_transform(list(data["edibility"]))
-        zip(encoded_list, edibility)
-    return list(encoded_list)
+        encoded_list.append(edibility)
+    return encoded_list

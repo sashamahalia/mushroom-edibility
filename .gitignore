@@ -1,2 +1,5 @@
 .DS_Store
 .idea/
+*.pickle
+**/*.pickle
+__pycache__

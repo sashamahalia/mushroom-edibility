@@ -12,8 +12,8 @@ data = pd.read_csv("mushroom-data/agaricus-lepiota.data")
 # setup input and output
 encoded_list = encoder.encode(data)
 
-X = encoded_list[:-1]
-y = encoded_list[-1]
+X = list(zip(*encoded_list[:-1]))
+y = list(encoded_list[-1])
 
 # X = list(zip(cap_shape, cap_color, odor, bruises, population, stalk_shape, gill_color))
 # y = list(edibility)
