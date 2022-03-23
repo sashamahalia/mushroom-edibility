@@ -1,3 +1,5 @@
+import json
+
 import sklearn
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
@@ -8,9 +10,14 @@ import pickle
 from services import encoder
 
 data = pd.read_csv("mushroom-data/agaricus-lepiota.data")
+# data = pd.read_csv("mushroom-data/single-dataset.data")
+used_data = data[["edibility", "cap-shape", "cap-color", "stalk-shape", "gill-color", "odor", "bruises", "population"]]
+# out_file = open("knn.json", "w")
+# json.dump(used_data.to_json(), out_file, indent=6)
+# out_file.close()
 
 # setup input and output
-encoded_list = encoder.encode(data)
+encoded_list = encoder.encode(used_data)
 
 X = list(zip(*encoded_list[:-1]))
 y = list(encoded_list[-1])
