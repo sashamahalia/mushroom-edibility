@@ -10,11 +10,7 @@ import pickle
 from services import encoder
 
 data = pd.read_csv("mushroom-data/agaricus-lepiota.data")
-# data = pd.read_csv("mushroom-data/single-dataset.data")
 used_data = data[["edibility", "cap-shape", "cap-color", "stalk-shape", "gill-color", "odor", "bruises", "population"]]
-# out_file = open("knn.json", "w")
-# json.dump(used_data.to_json(), out_file, indent=6)
-# out_file.close()
 
 # setup input and output
 encoded_list = encoder.encode(used_data)
@@ -26,8 +22,7 @@ y = list(encoded_list[-1])
 # y = list(edibility)
 
 # Adds human readable label for output
-labels = {0: 'edible',
-          1: 'poisonous'}
+labels = {0: 'edible', 1: 'poisonous'}
 
 y = np.vectorize(labels.__getitem__)(y)
 

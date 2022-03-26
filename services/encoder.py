@@ -1,21 +1,19 @@
 # convert the data into numeric format
 from sklearn import preprocessing
+from constants import ATTRIBUTES
 
 
 def encode(data):
+    print("entering encoder: ", data)
     le = preprocessing.LabelEncoder()
 
-    cap_shape = le.fit_transform(list(data["cap-shape"]))
-    cap_color = le.fit_transform(list(data["cap-color"]))
-    odor = le.fit_transform(list(data["odor"]))
-    bruises = le.fit_transform(list(data["bruises"]))
-    population = le.fit_transform(list(data["population"]))
-    stalk_shape = le.fit_transform(list(data["stalk-shape"]))
-    gill_color = le.fit_transform(list(data["gill-color"]))
+    encoded_list = []
 
-    encoded_list = [cap_shape, cap_color, odor, bruises, population, stalk_shape, gill_color]
+    for key, value in ATTRIBUTES.items():
+        if key in data:
+            le.fit(value)
+            encoded_list.append(le.transform(data[key]))
 
-    if "edibility" in data:
-        edibility = le.fit_transform(list(data["edibility"]))
-        encoded_list.append(edibility)
+    print("leaving encoder: ", encoded_list)
+
     return encoded_list
